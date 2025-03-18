@@ -1,0 +1,13 @@
+Vendor,Port,Tx Power (dBm),Rx Power (dBm)
+Juniper,et-0/0/0-lane0,12,12
+Juniper,ge-0/1/0,-5.04,0.3840
+Juniper,xe-0/1/0,-3.06,0.0000
+Juniper,xe-0/1/1,-1.92,-29.21
+Juniper,et-3/0/0-lane0,,-1.29
+Juniper,et-3/0/0-lane1,,-1.24
+Juniper,et-3/0/0-lane2,,-1.03
+Juniper,et-3/0/0-lane3,,-1.15
+Juniper,et-4/1/0-lane0,0.01,-3.03
+Juniper,et-4/1/0-lane1,0.01,-2.14
+Juniper,et-4/1/0-lane2,0.00,-2.67
+Juniper,et-4/1/0-lane3,0.01,-1.96
