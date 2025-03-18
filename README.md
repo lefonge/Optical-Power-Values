@@ -3,12 +3,12 @@ This project automates the extraction of the Tx and Rx power values from Nokia a
 
 # Process:
 ## Step 1
-Basically an ansible-playbook is run to collect the power values from the Juniper and Nokia nodes with the following commands:
+Basically an ansible-playbook is run to collect the power values from the Juniper and Nokia nodes with the following commands (please edit the inventory files to reflect your device IP addresses):
 
 Juniper: ansible-playbook -u admin -i inventory_hostname_junos junos_commands.yml
 Nokia: ansible-playbook -u admin --inventory inventory_hostname sros_classic.yml
 
-Two files are generated which are:
+Two files are generated with the playbooks above which are:
 
 juniper_output.txt
 nokia_output.txt
@@ -22,7 +22,7 @@ python3 sros_optical_v1.5.py
 These two python scripts are executed at once by means of a bash script that is “./run_optical_scripts.sh”
 
 ## Step 3
-This bash script generates two csv files where the optical power values are reported:
+The bash script above generates two csv files where the optical power values are reported:
 
 -	juniper_optical_power.csv
 -	nokia_optical_power.csv
