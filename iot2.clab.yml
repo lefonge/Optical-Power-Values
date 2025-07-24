@@ -1,0 +1,30 @@
+name: IOT4
+topology:
+  kinds:
+    nokia_sros:
+      image: vrnetlab/nokia_sros:24.10.R3
+    juniper_vjunosevolved:
+      image: vrnetlab/juniper_vjunosevolved:23.2R2.21-EVO
+
+  nodes:
+    sr1:
+      kind: nokia_sros
+      type: sr-1s
+      license: license-sros24.txt
+#    sr7:
+#      kind: nokia_sros
+#      type: >-
+#        cp: cpu=2 min_ram=4 chassis=sr-7 slot=A card=cpm5 ___
+#        lc: cpu=4 min_ram=4 max_nics=6 chassis=sr-7 slot=1 card=iom4-e mda/1=me6-10gb-sfp+ ___
+#        lc: cpu=4 min_ram=4 max_nics=6 chassis=sr-7 slot=2 card=iom4-e mda/1=me6-10gb-sfp+
+#      license: license-sros24.txt
+
+    vevo:
+      kind: juniper_vjunosevolved
+      image: vrnetlab/juniper_vjunosevolved:23.2R2.21-EVO
+#      image: vrnetlab/juniper_vjunosevolved:23.2R2.21-EVO
+      startup-config: ~/marco/clab-test2/clab-sros/sros/tftpboot/vjunos.cfg
+
+  links:
+    - endpoints: ["sr1:eth1", "vevo:eth1"]
+#   - endpoints: ["sr1:eth2", "sr7:1/1/1"]

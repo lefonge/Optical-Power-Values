@@ -1,0 +1,36 @@
+---
+- hosts: Juniper
+  vars:
+    ansible_network_os: junipernetworks.junos.junos
+    output_file: "juniper_output.txt"
+  vars_prompt:
+    - name: ansible_user
+      prompt: "Username"
+      private: no
+    - name: ansible_password
+      prompt: "Password"
+  connection: network_cli
+  gather_facts: No
+
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Run Junos commands to get hostname and optics info
+      junos_command:
+        commands:
+          - show system information | match Hostname
+          - show interfaces diagnostics optics
+      register: combined_output
+
+    - name: Format and save output locally
+      delegate_to: localhost
+      copy:
+        dest: "{{ output_file }}"
+        content: |
+          ===== Hostname =====
+          {{ combined_output.stdout[0] }}
+
+          ===== Optics Info =====
+          {{ combined_output.stdout[1] }}
+      run_once: true

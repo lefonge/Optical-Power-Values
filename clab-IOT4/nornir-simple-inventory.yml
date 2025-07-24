@@ -1,0 +1,11 @@
+---
+vevo:
+    username: admin
+    password: admin@123
+    platform: juniper_vjunosevolved
+    hostname: 172.20.20.3
+sr1:
+    username: admin
+    password: admin
+    platform: nokia_sros
+    hostname: 172.20.20.2

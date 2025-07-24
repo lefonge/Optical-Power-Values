@@ -1,0 +1,36 @@
+---
+- hosts: nokia_classic
+  vars:
+    ansible_network_os: nokia.sros.classic
+    log_file: "nokia_output.txt"
+  vars_prompt:
+    - name: ansible_user
+      prompt: "Username"
+      private: no
+    - name: ansible_password
+      prompt: "Password"
+  connection: network_cli
+  gather_facts: no
+
+  collections:
+    - nokia.sros
+
+  tasks:
+    - name: Run multiple commands on remote nodes
+      sros_command:
+        commands:
+          - show system information | match "System Name"
+          - show port detail
+      register: output1
+
+    - name: Display output
+      debug:
+        msg: "{{ output1.stdout }}"
+
+    - name: Save logs to file
+      delegate_to: localhost
+      become: false
+      copy:
+        dest: "{{ log_file }}"
+        content: "{{ output1.stdout | join('\n') }}"
+        mode: '0664'
