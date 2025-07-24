@@ -1,5 +1,0 @@
-[nokia_classic]
-172.20.20.3
-
-[nokia_classic:vars]
-ansible_network_os=nokia.sros.classic
